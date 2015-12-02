@@ -23,7 +23,7 @@ PIXI.loader.add('bg', './img/bg.jpg').load(function (loader, resources) {
 });
 
 var pickles = [];
-PIXI.loader.add('pickle', './img/dill-pickle.png').load(function (loader, resources) {
+PIXI.loader.add('pickle', './img/bannana.png').load(function (loader, resources) {
   var shadow = new PIXI.filters.DropShadowFilter();
   shadow.distance = 0;
   shadow.blur = 20;
@@ -33,8 +33,8 @@ PIXI.loader.add('pickle', './img/dill-pickle.png').load(function (loader, resour
     p.position.y = Math.random() * 400;
     p.pivot.x = 480/2;
     p.pivot.y = 263/2;
-    p.scale.x = 0.5;
-    p.scale.y = 0.5;
+    p.scale.x = 0.25;
+    p.scale.y = 0.25;
 
     p.filters = [shadow];
 
@@ -43,7 +43,28 @@ PIXI.loader.add('pickle', './img/dill-pickle.png').load(function (loader, resour
   }
 });
 
-PIXI.loader.add('cat', './img/space-monkey.jpg').load(function (loader, resources) {
+var aliens = [];
+PIXI.loader.add('alien', './img/spooky-bannana.png').load(function (loader, resources){
+	var shadow = new PIXI.filters.DropShadowFilter();
+  	shadow.distance = 0;
+  	shadow.blur = 20;
+
+	for(i=0;i<2;i++) {
+		var a = new PIXI.Sprite(resources.alien.texture);
+		a.pivot.x = 480/2;
+		a.pivot.y = 263/2;
+		a.scale.x = 0.25;
+		a.scale.y = 0.25;
+
+		a.filters = [shadow];
+
+		aliens[i] = a;
+		foreground.addChild(a);
+	}
+});
+
+
+PIXI.loader.add('cat', './img/space-monkey.png').load(function (loader, resources) {
   cat = new PIXI.Sprite(resources.cat.texture);
   cat.pivot.x = 250;
   cat.pivot.y = 320;
@@ -116,6 +137,12 @@ function animate() {
     pickles[i].position.x = ((d/(25+i) + i*700)) % (w + 800) - 400;
     pickles[i].position.y = 100 * Math.sin(i + d / 5000) + 150;
     pickles[i].rotation = Math.sign(i-1.5) * d / (2500 + 300 * i);
+  }
+
+  for(i=0;i<aliens.length; i++) {
+  	aliens[i].position.x = ((d/(25+i) + i*700)) % (w + 800) - 400;
+    aliens[i].position.y = 100 * Math.sin(i + d / 5000) + 150;
+    aliens[i].rotation = Math.sign(i-1.5) * d / (2500 + 300 * i);
   }
 
   catf.scale.x = (window.innerWidth/2 - mousex) / 80 + 6 * Math.sin(d/1000);

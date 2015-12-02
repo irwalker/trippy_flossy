@@ -1,3 +1,3 @@
-# trippy_flossy
+# Trippy Flossy
 
-Treat me like a pirate
+Just a monkey floating through space
