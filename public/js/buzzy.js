@@ -64,7 +64,7 @@ PIXI.loader.add('alien', 'spooky-bannana.png').load(function (loader, resources)
 });
 
 
-PIXI.loader.add('cat', './space-monkey.png').load(function (loader, resources) {
+PIXI.loader.add('cat', '/space-monkey.png').load(function (loader, resources) {
   cat = new PIXI.Sprite(resources.cat.texture);
   cat.pivot.x = 250;
   cat.pivot.y = 320;
